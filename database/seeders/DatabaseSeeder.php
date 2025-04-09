@@ -7,6 +7,7 @@ use App\Models\School;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\UserSchool;
+use App\Models\UserCohort;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -160,12 +161,53 @@ class DatabaseSeeder extends Seeder
         ]);
 
         // Create a cohort
-        Cohort::create([
+        $cohort = Cohort::create([
             'school_id' => $school->id,
             'name'      => 'Promotion B1',
             'description' => 'Cergy',
             'start_date' => '2024-09-01 00:00:00',
             'end_date' => '2025-05-01 00:00:00',
+        ]);
+
+        // Fill the Users_Cohorts table
+        UserCohort::create([
+            'user_id'   => $user->id,
+            'cohort_id' => $cohort->id,
+        ]);
+
+        UserCohort::create([
+            'user_id'   => $user2->id,
+            'cohort_id' => $cohort->id,
+        ]);
+
+        UserCohort::create([
+            'user_id'   => $user3->id,
+            'cohort_id' => $cohort->id,
+        ]);
+
+        UserCohort::create([
+            'user_id'   => $user4->id,
+            'cohort_id' => $cohort->id,
+        ]);
+
+        UserCohort::create([
+            'user_id'   => $user5->id,
+            'cohort_id' => $cohort->id,
+        ]);
+
+        UserCohort::create([
+            'user_id'   => $user6->id,
+            'cohort_id' => $cohort->id,
+        ]);
+
+        UserCohort::create([
+            'user_id'   => $user7->id,
+            'cohort_id' => $cohort->id,
+        ]);
+
+        UserCohort::create([
+            'user_id'   => $user8->id,
+            'cohort_id' => $cohort->id,
         ]);
     }
 }

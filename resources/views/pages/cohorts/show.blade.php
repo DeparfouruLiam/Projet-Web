@@ -41,14 +41,16 @@
                                     </tr>
                                     </thead>
                                     <tbody>
+                                    @foreach($cohort->getUsersCohorts() as $user)
                                         <tr>
-                                        <td>Doe</td>
-                                        <td>John</td>
-                                        <td>10/02/2000</td>
+                                        <td>{{ $user->GetUsers()->last_name }}</td>
+                                        <td>{{ $user->GetUsers()->first_name }}</td>
+                                        <td>{{ $user->GetUsers()->birth_date }}</td>
                                         <td class="cursor-pointer pointer">
                                             <i class="ki-filled ki-trash"></i>
                                         </td>
                                     </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>
