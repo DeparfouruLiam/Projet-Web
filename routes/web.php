@@ -38,7 +38,9 @@ Route::middleware('auth')->group(function () {
         Route::get('knowledge', [KnowledgeController::class, 'index'])->name('knowledge.index');
 
         // Groups
-        Route::get('groups', [GroupController::class, 'index'])->name('group.index');
+        Route::get('/groups', [GroupController::class, 'index'])->name('group.index');
+        Route::get('/groups/{cohort}', [GroupController::class, 'show'])->name('group.show');
+        Route::post('/groups/{cohort}', [GroupController::class, 'generate'])->name('GenerateGroups');
 
         // Retro
         route::get('retros', [RetroController::class, 'index'])->name('retro.index');

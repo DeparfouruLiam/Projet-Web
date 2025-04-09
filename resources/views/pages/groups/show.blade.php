@@ -1,12 +1,9 @@
 <x-app-layout>
     <x-slot name="header">
         <h1 class="flex items-center gap-1 text-sm font-normal">
-            <span class="text-gray-700">
-                {{ __('Groupes') }}
-            </span>
+            <span class="text-gray-700">{{ $cohort->name }}</span>
         </h1>
     </x-slot>
-
 
     <!-- begin: grid -->
     <div class="grid lg:grid-cols-3 gap-5 lg:gap-7.5 items-stretch">
@@ -14,52 +11,44 @@
             <div class="grid">
                 <div class="card card-grid h-full min-w-full">
                     <div class="card-header">
-                        <h3 class="card-title">Mes promotions</h3>
+                        <h3 class="card-title">Groupes</h3>
                     </div>
                     <div class="card-body">
-                        <div data-datatable="true" data-datatable-page-size="5">
+                        <div data-datatable="true" data-datatable-page-size="30">
                             <div class="scrollable-x-auto">
                                 <table class="table table-border" data-datatable-table="true">
                                     <thead>
                                     <tr>
-                                        <th class="min-w-[280px]">
+                                        <th class="min-w-[135px]">
                                             <span class="sort asc">
-                                                 <span class="sort-label">Promotion</span>
+                                                 <span class="sort-label">Nom</span>
                                                  <span class="sort-icon"></span>
                                             </span>
                                         </th>
                                         <th class="min-w-[135px]">
                                             <span class="sort">
-                                                <span class="sort-label">Année</span>
+                                                <span class="sort-label">Prénom</span>
                                                 <span class="sort-icon"></span>
                                             </span>
                                         </th>
                                         <th class="min-w-[135px]">
                                             <span class="sort">
-                                                <span class="sort-label">Etudiants</span>
+                                                <span class="sort-label">Date de naissance</span>
                                                 <span class="sort-icon"></span>
                                             </span>
                                         </th>
+                                        <th class="max-w-[50px]"></th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($cohorts as $cohort)
                                         <tr>
-                                            <td>
-                                                <div class="flex flex-col gap-2">
-                                                    <a class="leading-none font-medium text-sm text-gray-900 hover:text-primary"
-                                                       href="{{ route('group.show', 1) }}">
-                                                        {{ $cohort->name }}
-                                                    </a>
-                                                    <span class="text-2sm text-gray-700 font-normal leading-3">
-                                                    {{ $cohort->description }}
-                                                </span>
-                                                </div>
-                                            </td>
-                                            <td>{{ $cohort->getStartYear() }}-{{ $cohort->getEndYear() }}</td>
-                                            <td>{{ $cohort->getNbStud() }}</td>
+                                        <td>rterdsshhhsshhs</td>
+                                        <td>btrfgfg</td>
+                                        <td>aaaa</td>
+                                        <td class="cursor-pointer pointer">
+                                            <i class="ki-filled ki-trash"></i>
+                                        </td>
                                         </tr>
-                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -76,6 +65,29 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+        <div class="lg:col-span-1">
+            <div class="card h-full">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        Créer de nouveaux groupes aléatoires
+                    </h3>
+                </div>
+                <div class="card-body flex flex-col gap-5">
+                    <form action="{{ route('GenerateGroups',1) }}" method="POST">
+                        @csrf
+                        <x-forms.dropdown name="nb_per_group" :label="__('Étudiants par groupes')" required>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </x-forms.dropdown>
+
+                        <x-forms.primary-button type="submit">
+                            {{ __('Valider') }}
+                        </x-forms.primary-button>
+                    </form>
                 </div>
             </div>
         </div>
