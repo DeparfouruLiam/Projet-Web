@@ -21,19 +21,13 @@
                                     <tr>
                                         <th class="min-w-[135px]">
                                             <span class="sort asc">
-                                                 <span class="sort-label">Nom</span>
+                                                 <span class="sort-label">Nom du groupe</span>
                                                  <span class="sort-icon"></span>
                                             </span>
                                         </th>
-                                        <th class="min-w-[135px]">
+                                        <th class="min-w-[270px]">
                                             <span class="sort">
-                                                <span class="sort-label">Prénom</span>
-                                                <span class="sort-icon"></span>
-                                            </span>
-                                        </th>
-                                        <th class="min-w-[135px]">
-                                            <span class="sort">
-                                                <span class="sort-label">Date de naissance</span>
+                                                <span class="sort-label">Membres du groupe</span>
                                                 <span class="sort-icon"></span>
                                             </span>
                                         </th>
@@ -41,14 +35,19 @@
                                     </tr>
                                     </thead>
                                     <tbody>
+                                    @foreach($groups as $group)
                                         <tr>
-                                        <td>rterdsshhhsshhs</td>
-                                        <td>btrfgfg</td>
-                                        <td>aaaa</td>
+                                        <td>{{ $group->group_name }}</td>
+                                        <td>-
+                                            @foreach($group->getUsersGroups() as $Member)
+                                                {{ $Member->getUsers()->first_name  }} -
+                                            @endforeach
+                                        </td>
                                         <td class="cursor-pointer pointer">
                                             <i class="ki-filled ki-trash"></i>
                                         </td>
                                         </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -68,29 +67,32 @@
                 </div>
             </div>
         </div>
-        <div class="lg:col-span-1">
-            <div class="card h-full">
-                <div class="card-header">
-                    <h3 class="card-title">
-                        Créer de nouveaux groupes aléatoires
-                    </h3>
-                </div>
-                <div class="card-body flex flex-col gap-5">
-                    <form action="{{ route('GenerateGroups',1) }}" method="POST">
-                        @csrf
-                        <x-forms.dropdown name="nb_per_group" :label="__('Étudiants par groupes')" required>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                        </x-forms.dropdown>
 
-                        <x-forms.primary-button type="submit">
-                            {{ __('Valider') }}
-                        </x-forms.primary-button>
-                    </form>
+        @can('create', App\Models\Groups::class)
+            <div class="lg:col-span-1">
+                <div class="card h-full">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            Créer de nouveaux groupes aléatoires
+                        </h3>
+                    </div>
+                    <div class="card-body flex flex-col gap-5">
+                        <form action="{{ route('GenerateGroups',1) }}" method="POST">
+                            @csrf
+                            <x-forms.dropdown name="nb_per_group" :label="__('Étudiants par groupes')" required>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                            </x-forms.dropdown>
+
+                            <x-forms.primary-button type="submit">
+                                {{ __('Valider') }}
+                            </x-forms.primary-button>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
+        @endcan
     </div>
     <!-- end: grid -->
 </x-app-layout>

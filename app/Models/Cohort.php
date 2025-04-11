@@ -12,20 +12,11 @@ class Cohort extends Model
     protected $table        = 'cohorts';
     protected $fillable     = ['school_id', 'name', 'description', 'start_date', 'end_date'];
 
-//    public function UserCohort(){
-//        return $this->hasOne(UserCohort::class);
-//    }
-
+    // Fonction pour récupérer la donnée dans UserCohort correspondante à l'id donnée
     public function getUsersCohorts(){
         return UserCohort::where('cohort_id',$this->id)->get();
-        //return User::where('id',$UserCohorts->cohort_id)->get();
     }
-    public function getUserCohorts(){
-        foreach (UserCohort::where('cohort_id',$this->id) as $userCohort) {
 
-        }
-        return UserCohort::class->GetUsers($this->cohort_id);
-    }
 
     // Fonction pour récupérer le nombre d'étudiants de chaque cohort
     public function getNbStud(){

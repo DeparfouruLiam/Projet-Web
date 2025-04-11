@@ -6,6 +6,7 @@ use App\Models\Cohort;
 use App\Models\School;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\UserBilan;
 use App\Models\UserSchool;
 use App\Models\UserCohort;
 use Illuminate\Database\Seeder;
@@ -208,6 +209,46 @@ class DatabaseSeeder extends Seeder
         UserCohort::create([
             'user_id'   => $user8->id,
             'cohort_id' => $cohort->id,
+        ]);
+
+        UserBilan::create([
+            'user_id'   => $user->id,
+            'bilan_grade' => 15,
+        ]);
+
+        UserBilan::create([
+            'user_id'   => $user2->id,
+            'bilan_grade' => 8,
+        ]);
+
+        UserBilan::create([
+            'user_id'   => $user3->id,
+            'bilan_grade' => 19,
+        ]);
+
+        UserBilan::create([
+            'user_id'   => $user4->id,
+            'bilan_grade' => 10,
+        ]);
+
+        UserBilan::create([
+            'user_id'   => $user5->id,
+            'bilan_grade' => 6,
+        ]);
+
+        UserBilan::create([
+            'user_id'   => $user6->id,
+            'bilan_grade' => 13,
+        ]);
+
+        UserBilan::create([
+            'user_id'   => $user7->id,
+            'bilan_grade' => 2,
+        ]);
+
+        UserBilan::create([
+            'user_id'   => $user8->id,
+            'bilan_grade' => 20,
         ]);
     }
 }
