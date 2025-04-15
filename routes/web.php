@@ -44,6 +44,8 @@ Route::middleware('auth')->group(function () {
 
         // Retro
         route::get('retros', [RetroController::class, 'index'])->name('retro.index');
+        Route::get('/retros/{cohort}', [GroupController::class, 'show'])->name('retro.show');
+        Route::get('/retros/{cohort}/{kanban}', [GroupController::class, 'showkanban'])->name('retro.showkanban');
 
         // Common life
         Route::get('common-life', [CommonLifeController::class, 'index'])->name('common-life.index');

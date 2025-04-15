@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\Cohort;
+use App\Models\Retros;
+use App\Models\RetrosContent;
 use App\Models\School;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -249,6 +251,17 @@ class DatabaseSeeder extends Seeder
         UserBilan::create([
             'user_id'   => $user8->id,
             'bilan_grade' => 20,
+        ]);
+
+        Retros::create([
+            'retro_name'   => 'La rétro du cul',
+            'cohort_id' => 1,
+        ]);
+
+        RetrosContent::create([
+            'title'   => 'LE CUL',
+            'user_id' => 1,
+            'retro_id' => 1,
         ]);
     }
 }

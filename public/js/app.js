@@ -10439,11 +10439,14 @@ process.umask = function() { return 0; };
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _bootstrap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
-/* harmony import */ var alpinejs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/module.esm.js");
+/* harmony import */ var _scripts__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./scripts */ "./resources/js/scripts.js");
+/* harmony import */ var _scripts__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_scripts__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var alpinejs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/module.esm.js");
 
 
-window.Alpine = alpinejs__WEBPACK_IMPORTED_MODULE_1__["default"];
-alpinejs__WEBPACK_IMPORTED_MODULE_1__["default"].start();
+
+window.Alpine = alpinejs__WEBPACK_IMPORTED_MODULE_2__["default"];
+alpinejs__WEBPACK_IMPORTED_MODULE_2__["default"].start();
 
 /***/ }),
 
@@ -10459,6 +10462,62 @@ __webpack_require__.r(__webpack_exports__);
 
 window.axios = axios__WEBPACK_IMPORTED_MODULE_0__["default"];
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+
+/***/ }),
+
+/***/ "./resources/js/scripts.js":
+/*!*********************************!*\
+  !*** ./resources/js/scripts.js ***!
+  \*********************************/
+/***/ (() => {
+
+var dataContent = [{
+  "id": "column-id-1",
+  "title": "カラム (1)",
+  "item": [{
+    "id": "item-id-1",
+    "title": "カード 1"
+  }, {
+    "id": "item-id-2",
+    "title": "カード 2"
+  }]
+}, {
+  "id": "column-id-2",
+  "title": "カラム (2)",
+  "item": [{
+    "id": "item-id-3",
+    "title": "カード 3"
+  }]
+}, {
+  "id": "column-id-3",
+  "title": "カラム (3)",
+  "item": [{
+    "id": "item-id-4",
+    "title": "カード 4"
+  }, {
+    "id": "item-id-5",
+    "title": "カード 5"
+  }]
+}];
+var kanban = new jKanban({
+  element: '#kanban-canvas',
+  // カンバンを表示する場所のID
+  boards: dataContent,
+  // カンバンに表示されるカラムやカードのデータ
+  gutter: '16px',
+  // カンバンの余白
+  widthBoard: '250px',
+  // カラムの幅 (responsivePercentageの「true」設定により無視される)
+  responsivePercentage: true,
+  // trueを選択時はカラム幅は％で指定され、gutterとwidthBoardの設定は不要
+  dragItems: true,
+  // trueを選択時はカードをドラッグ可能
+  dragBoards: true // カラムをドラッグ可能にするかどうか
+});
+var salope = {
+  "id": "item-id-6",
+  "title": "Saloperie 6"
+};
 
 /***/ }),
 
@@ -10534,6 +10593,18 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 				}
 /******/ 			}
 /******/ 			return result;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
 /******/ 		};
 /******/ 	})();
 /******/ 	
