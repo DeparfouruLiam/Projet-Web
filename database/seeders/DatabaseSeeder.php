@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Cohort;
 use App\Models\Retros;
+use App\Models\RetrosColumns;
 use App\Models\RetrosContent;
 use App\Models\School;
 use App\Models\User;
@@ -258,10 +259,15 @@ class DatabaseSeeder extends Seeder
             'cohort_id' => 1,
         ]);
 
-        RetrosContent::create([
-            'title'   => 'LE CUL',
-            'user_id' => 1,
+        RetrosColumns::create([
+            'title'   => 'LES CULS',
             'retro_id' => 1,
+        ]);
+
+        RetrosContent::create([
+            'text'   => 'caca',
+            'user_id' => 1,
+            'column_id' => 1,
         ]);
     }
 }

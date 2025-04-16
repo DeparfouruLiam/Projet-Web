@@ -1,4 +1,4 @@
-var dataContent = [
+/*var dataContent = [
     {
         "id": "column-id-1",
         "title": "カラム (1)",
@@ -37,7 +37,7 @@ var dataContent = [
             }
         ]
     }
-];
+];*/
 
 
 
@@ -56,3 +56,15 @@ var salope ={
         "title": "Saloperie 6"
     }
 ;
+document.getElementById("AddKanban").onclick = function() {KanbanAdd()};
+document.getElementById("RemoveKanban").onclick = function() {KanbanRemove()};
+function ColumnAdd (ColumnID,ColumnTitle){kanban.addBoards({
+    "id": ColumnID,
+    "title": ColumnTitle,
+    "item": []
+})}
+function KanbanAdd(ColumnID,ContentID,Text){ kanban.addElement(ColumnID,{
+    "id": ContentID,
+    "title": Text
+})}
+function KanbanRemove(){ kanban.removeElement('item-id-6'); }

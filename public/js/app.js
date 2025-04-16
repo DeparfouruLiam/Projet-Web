@@ -10471,34 +10471,47 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
   \*********************************/
 /***/ (() => {
 
-var dataContent = [{
-  "id": "column-id-1",
-  "title": "カラム (1)",
-  "item": [{
-    "id": "item-id-1",
-    "title": "カード 1"
-  }, {
-    "id": "item-id-2",
-    "title": "カード 2"
-  }]
-}, {
-  "id": "column-id-2",
-  "title": "カラム (2)",
-  "item": [{
-    "id": "item-id-3",
-    "title": "カード 3"
-  }]
-}, {
-  "id": "column-id-3",
-  "title": "カラム (3)",
-  "item": [{
-    "id": "item-id-4",
-    "title": "カード 4"
-  }, {
-    "id": "item-id-5",
-    "title": "カード 5"
-  }]
-}];
+/*var dataContent = [
+    {
+        "id": "column-id-1",
+        "title": "カラム (1)",
+        "item": [
+            {
+                "id": "item-id-1",
+                "title": "カード 1"
+            },
+            {
+                "id": "item-id-2",
+                "title": "カード 2"
+            }
+        ]
+    },
+    {
+        "id": "column-id-2",
+        "title": "カラム (2)",
+        "item": [
+            {
+                "id": "item-id-3",
+                "title": "カード 3"
+            }
+        ]
+    },
+    {
+        "id": "column-id-3",
+        "title": "カラム (3)",
+        "item": [
+            {
+                "id": "item-id-4",
+                "title": "カード 4"
+            },
+            {
+                "id": "item-id-5",
+                "title": "カード 5"
+            }
+        ]
+    }
+];*/
+
 var kanban = new jKanban({
   element: '#kanban-canvas',
   // カンバンを表示する場所のID
@@ -10518,6 +10531,28 @@ var salope = {
   "id": "item-id-6",
   "title": "Saloperie 6"
 };
+document.getElementById("AddKanban").onclick = function () {
+  KanbanAdd();
+};
+document.getElementById("RemoveKanban").onclick = function () {
+  KanbanRemove();
+};
+function ColumnAdd(ColumnID, ColumnTitle) {
+  kanban.addBoards({
+    "id": ColumnID,
+    "title": ColumnTitle,
+    "item": []
+  });
+}
+function KanbanAdd(ColumnID, ContentID, Text) {
+  kanban.addElement(ColumnID, {
+    "id": ContentID,
+    "title": Text
+  });
+}
+function KanbanRemove() {
+  kanban.removeElement('item-id-6');
+}
 
 /***/ }),
 

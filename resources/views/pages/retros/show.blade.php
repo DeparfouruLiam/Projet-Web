@@ -2,7 +2,7 @@
     <x-slot name="header">
         <h1 class="flex items-center gap-1 text-sm font-normal">
             <span class="text-gray-700">
-                {{ __('Groupes') }}
+                {{ __('Retros') }}
             </span>
         </h1>
     </x-slot>
@@ -14,7 +14,7 @@
             <div class="grid">
                 <div class="card card-grid h-full min-w-full">
                     <div class="card-header">
-                        <h3 class="card-title">Mes promotions</h3>
+                        <h3 class="card-title">Mes rétros</h3>
                     </div>
                     <div class="card-body">
                         <div data-datatable="true" data-datatable-page-size="5">
@@ -24,40 +24,23 @@
                                     <tr>
                                         <th class="min-w-[280px]">
                                             <span class="sort asc">
-                                                 <span class="sort-label">Promotion</span>
+                                                 <span class="sort-label">Nom de la rétro</span>
                                                  <span class="sort-icon"></span>
-                                            </span>
-                                        </th>
-                                        <th class="min-w-[135px]">
-                                            <span class="sort">
-                                                <span class="sort-label">Année</span>
-                                                <span class="sort-icon"></span>
-                                            </span>
-                                        </th>
-                                        <th class="min-w-[135px]">
-                                            <span class="sort">
-                                                <span class="sort-label">Etudiants</span>
-                                                <span class="sort-icon"></span>
                                             </span>
                                         </th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($cohorts as $cohort)
+                                    @foreach($retros as $retro)
                                         <tr>
                                             <td>
                                                 <div class="flex flex-col gap-2">
                                                     <a class="leading-none font-medium text-sm text-gray-900 hover:text-primary"
-                                                       href="{{ route('retros.show', 1) }}">
-                                                        {{ $cohort->name }}
+                                                       href="{{ route('retros.showkanban', [1,1]) }}">
+                                                        {{ $retro->retro_name }}
                                                     </a>
-                                                    <span class="text-2sm text-gray-700 font-normal leading-3">
-                                                    {{ $cohort->description }}
-                                                </span>
                                                 </div>
                                             </td>
-                                            <td>{{ $cohort->getStartYear() }}-{{ $cohort->getEndYear() }}</td>
-                                            <td>{{ $cohort->getNbStud() }}</td>
                                         </tr>
                                     @endforeach
                                     </tbody>

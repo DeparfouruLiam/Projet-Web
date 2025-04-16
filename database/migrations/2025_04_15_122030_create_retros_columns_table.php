@@ -11,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('retros_content', function (Blueprint $table) {
+        Schema::create('retros_columns', function (Blueprint $table) {
             $table->id();
-            $table->string('text');
-            $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('column_id')->constrained('retros_columns');
+            $table->string('title');
+            $table->foreignId('retro_id')->constrained('retros');
             $table->timestamps();
         });
     }
@@ -25,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('retros_content');
+        Schema::dropIfExists('retros_columns');
     }
 };

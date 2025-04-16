@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Cohort;
 use App\Models\Retros;
+use App\Models\RetrosColumns;
+use Cassandra\Column;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
@@ -17,20 +19,22 @@ class RetroController extends Controller
      * @return Factory|View|Application|object
      */
     public function index() {
-        return view('pages.retros.index');
+        $cohorts = Cohort::all();
+        return view('pages.retros.index' , compact('cohorts'));
     }
 
-    public function show(Cohort $cohort) {
+    public function show(Cohort $cohorts) {
         $retros = Retros::all();
-        return view('pages.groups.show', [
-            'cohort' => $cohort, 'retros' => $retros
+        return view('pages.retros.show', [
+            'cohorts' => $cohorts, 'retros' => $retros
         ]);
     }
 
     public function showkanban(Cohort $cohort, Retros $retros) {
-        $content = Retros::all();
-        return view('pages.groups.show', [
-            'cohort' => $cohort, 'retros' => $retros, 'content' => $content
+        $contents = Retros::all();
+        $columns = RetrosColumns::all();
+        return view('pages.retros.showkanban', [
+            'cohort' => $cohort, 'retros' => $retros, 'columns' => $columns , 'content' => $contents
         ]);
     }
 }
