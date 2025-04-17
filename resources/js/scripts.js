@@ -62,10 +62,13 @@ document.addEventListener('DOMContentLoaded', () => {
     fetch(window.allajax)
         .then(res => res.json())
         .then(retrosData => {
-            retrosData.forEach(r => {
-                console.log(r.retro_name)
+            console.log(retrosData.columns[1].id)
+            retrosData.columns.forEach((item,index) => {
+                ColumnAdd(retrosData.columns[index].id,retrosData.columns[index].title),
+                retrosData.columns.forEach((itemContent,indexContent) =>
+                    KanbanAdd(retrosData.columns[index].id,retrosData.columns[index].items[indexContent].id,retrosData.columns[index].items[indexContent].text))
             })
-        })
+            })
 });
 function ColumnAdd (ColumnID,ColumnTitle){kanban.addBoards([{
     "id": ColumnID,

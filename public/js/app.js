@@ -10542,8 +10542,11 @@ document.addEventListener('DOMContentLoaded', function () {
   fetch(window.allajax).then(function (res) {
     return res.json();
   }).then(function (retrosData) {
-    retrosData.forEach(function (r) {
-      console.log(r.retro_name);
+    console.log(retrosData.columns[1].id);
+    retrosData.columns.forEach(function (item, index) {
+      ColumnAdd(retrosData.columns[index].id, retrosData.columns[index].title), retrosData.columns.forEach(function (itemContent, indexContent) {
+        return KanbanAdd(retrosData.columns[index].id, retrosData.columns[index].items[indexContent].id, retrosData.columns[index].items[indexContent].text);
+      });
     });
   });
 });

@@ -264,10 +264,27 @@ class DatabaseSeeder extends Seeder
             'retro_id' => 1,
         ]);
 
+        RetrosColumns::create([
+            'title'   => 'LES LOL',
+            'retro_id' => 1,
+        ]);
+
         RetrosContent::create([
             'text'   => 'caca',
             'user_id' => 1,
             'column_id' => 1,
+        ]);
+
+        RetrosContent::create([
+            'text'   => "Mettre caca dans ta bdd c'est très immature moi de mardi",
+            'user_id' => 1,
+            'column_id' => 1,
+        ]);
+
+        RetrosContent::create([
+            'text'   => "J'y arrive peut être",
+            'user_id' => 1,
+            'column_id' => 2,
         ]);
     }
 }
