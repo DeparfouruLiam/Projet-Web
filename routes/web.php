@@ -47,6 +47,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/retros/{cohort}', [RetroController::class, 'show'])->name('retros.show');
         Route::get('/retros/{cohort}/{retros}', [RetroController::class, 'showkanban'])->name('retros.showkanban');
 
+        Route::get('/retros/{cohort}/{retros}/GetRetrosJson', [RetroController::class, 'GetRetrosJson'])->name('retros.GetRetrosJson');
+
         // Common life
         Route::get('common-life', [CommonLifeController::class, 'index'])->name('common-life.index');
     });

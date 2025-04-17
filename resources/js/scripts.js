@@ -39,7 +39,7 @@
     }
 ];*/
 
-
+var dataContent = []
 
 var kanban = new jKanban({
     element: '#kanban-canvas',  // カンバンを表示する場所のID
@@ -56,13 +56,22 @@ var salope ={
         "title": "Saloperie 6"
     }
 ;
-document.getElementById("AddKanban").onclick = function() {KanbanAdd()};
+document.getElementById("AddKanban").onclick = function() {ColumnAdd("column_1","Salope")};
 document.getElementById("RemoveKanban").onclick = function() {KanbanRemove()};
-function ColumnAdd (ColumnID,ColumnTitle){kanban.addBoards({
+document.addEventListener('DOMContentLoaded', () => {
+    fetch(window.allajax)
+        .then(res => res.json())
+        .then(retrosData => {
+            retrosData.forEach(r => {
+                console.log(r.retro_name)
+            })
+        })
+});
+function ColumnAdd (ColumnID,ColumnTitle){kanban.addBoards([{
     "id": ColumnID,
     "title": ColumnTitle,
     "item": []
-})}
+}])}
 function KanbanAdd(ColumnID,ContentID,Text){ kanban.addElement(ColumnID,{
     "id": ContentID,
     "title": Text

@@ -10512,6 +10512,7 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
     }
 ];*/
 
+var dataContent = [];
 var kanban = new jKanban({
   element: '#kanban-canvas',
   // カンバンを表示する場所のID
@@ -10532,17 +10533,26 @@ var salope = {
   "title": "Saloperie 6"
 };
 document.getElementById("AddKanban").onclick = function () {
-  KanbanAdd();
+  ColumnAdd("column_1", "Salope");
 };
 document.getElementById("RemoveKanban").onclick = function () {
   KanbanRemove();
 };
+document.addEventListener('DOMContentLoaded', function () {
+  fetch(window.allajax).then(function (res) {
+    return res.json();
+  }).then(function (retrosData) {
+    retrosData.forEach(function (r) {
+      console.log(r.retro_name);
+    });
+  });
+});
 function ColumnAdd(ColumnID, ColumnTitle) {
-  kanban.addBoards({
+  kanban.addBoards([{
     "id": ColumnID,
     "title": ColumnTitle,
     "item": []
-  });
+  }]);
 }
 function KanbanAdd(ColumnID, ContentID, Text) {
   kanban.addElement(ColumnID, {

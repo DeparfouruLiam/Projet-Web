@@ -77,7 +77,7 @@
                         </h3>
                     </div>
                     <div class="card-body flex flex-col gap-5">
-                        <form action="{{ route('GenerateGroups',1) }}" method="POST">
+                        <form action="{{ route('GenerateGroups') }}" method="POST">
                             @csrf
                             <x-forms.dropdown name="nb_per_group" :label="__('Étudiants par groupes')" required>
                                 <option value="2">2</option>
