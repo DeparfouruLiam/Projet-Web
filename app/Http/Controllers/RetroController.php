@@ -80,7 +80,11 @@ class RetroController extends Controller
         return $content_list;
     }
 
-    public function AddColumnJson(){
-
+    public function AddColumnJson(Cohort $cohort,Retros $retros,Request $request){
+        RetrosColumns::create([
+            'title' => $request->NewColumn,
+            'retro_id' => $retros->id
+        ]);
+        return redirect('/retros/'.$cohort->id.'/'.$retros->id);
     }
 }

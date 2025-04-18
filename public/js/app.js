@@ -10515,6 +10515,11 @@ function ColumnAdd(ColumnID, ColumnTitle) {
     "item": []
   }]);
 }
+function ColumnAddDB(ColumnID, ColumnTitle) {
+  fetch(window.addajax).then(function (r) {
+    return ColumnAdd(ColumnID, ColumnTitle);
+  });
+}
 function KanbanAdd(ColumnID, ContentID, Text) {
   kanban.addElement(ColumnID, {
     "id": ContentID,

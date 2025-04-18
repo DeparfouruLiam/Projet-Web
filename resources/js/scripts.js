@@ -32,11 +32,17 @@ document.addEventListener('DOMContentLoaded', () => {
             })
         })
 });
-function ColumnAdd (ColumnID,ColumnTitle){kanban.addBoards([{
+function ColumnAdd (ColumnID,ColumnTitle){
+    kanban.addBoards([{
     "id": ColumnID,
     "title": ColumnTitle,
     "item": []
 }])}
+
+function ColumnAddDB (ColumnID,ColumnTitle){
+    fetch(window.addajax).then(r => ColumnAdd(ColumnID,ColumnTitle));
+
+}
 function KanbanAdd(ColumnID,ContentID,Text){ kanban.addElement(ColumnID,{
     "id": ContentID,
     "title": Text
