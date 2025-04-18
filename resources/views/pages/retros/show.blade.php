@@ -36,7 +36,7 @@
                                             <td>
                                                 <div class="flex flex-col gap-2">
                                                     <a class="leading-none font-medium text-sm text-gray-900 hover:text-primary"
-                                                       href="{{ route('retros.showkanban', [1,1]) }}">
+                                                       href="{{ route('retros.showkanban', [$cohorts->first()->id,$retro->id]) }}">
                                                         {{ $retro->retro_name }}
                                                     </a>
                                                 </div>

@@ -2,7 +2,7 @@
     <x-slot name="header">
         <h1 class="flex items-center gap-1 text-sm font-normal">
             <span class="text-gray-700">
-                {{ __('Groupes') }}
+                {{ __('Retros') }}
             </span>
         </h1>
     </x-slot>
@@ -48,7 +48,7 @@
                                             <td>
                                                 <div class="flex flex-col gap-2">
                                                     <a class="leading-none font-medium text-sm text-gray-900 hover:text-primary"
-                                                       href="{{ route('retros.show', 1) }}">
+                                                       href="{{ route('retros.show', $cohort->id) }}">
                                                         {{ $cohort->name }}
                                                     </a>
                                                     <span class="text-2sm text-gray-700 font-normal leading-3">

@@ -286,5 +286,32 @@ class DatabaseSeeder extends Seeder
             'user_id' => 1,
             'column_id' => 2,
         ]);
+
+        Retros::create([
+            'retro_name'   => 'La rétro du cru',
+            'cohort_id' => 1,
+        ]);
+
+        RetrosColumns::create([
+            'title'   => 'Pas cuit',
+            'retro_id' => 2,
+        ]);
+
+        RetrosColumns::create([
+            'title'   => 'Cuit',
+            'retro_id' => 2,
+        ]);
+
+        RetrosContent::create([
+            'text'   => "Grand",
+            'user_id' => 1,
+            'column_id' => 3,
+        ]);
+
+        RetrosContent::create([
+            'text'   => "Caca",
+            'user_id' => 1,
+            'column_id' => 4,
+        ]);
     }
 }

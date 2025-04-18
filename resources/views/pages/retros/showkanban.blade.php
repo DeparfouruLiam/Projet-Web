@@ -2,7 +2,7 @@
     <x-slot name="header">
         <h1 class="flex items-center gap-1 text-sm font-normal">
             <span class="text-gray-700">
-                {{ __('Retrospectives') }}
+                {{ __('Retros') }}
             </span>
         </h1>
     </x-slot>
@@ -11,26 +11,14 @@
     <script> window.allajax = "{{ route('retros.GetRetrosJson',[$cohort,$retros]) }}";</script>
 
     <main>
+        <div>{{$retros->id}}</div>
 
-        @foreach($columns as $column)
-            <script>
-                kanban.addBoards([{
-                    "id": {{ $column->id }},
-                    "title": {{ $column->title }},
-                    "item": []
-                }])
-            </script>
-
-
-            @foreach($contents as $content)
-
-            @endforeach
-        @endforeach
         <div id="kanban-canvas">
 
         </div>
-
-        <button id="AddKanban" type="button" >Allez viens</button>
+        <input id="NewColumn" style="background-color: darkgrey; margin: 5px" placeholder="Nom de la colonne" value="text" required>
+        <button id="AddKanban" type="button" >Ajouter Colonne</button>
+            <br>
         <button id="RemoveKanban" type="button" >Dégage</button>
 
 

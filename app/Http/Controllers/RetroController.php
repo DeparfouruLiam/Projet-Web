@@ -40,36 +40,13 @@ class RetroController extends Controller
         ]);
     }
 
-    public function GetRetrosJson($retros_id)
+    public function GetRetrosJson(Cohort $cohort,Retros $retros)
     {
-        $retros = Retros::All()->first();
-//        $formattedRetros = $retros->map(function($retro){
-//            $boards = $retro->columns->map(function($col){
-//                $items = $col->elements->map(function($elem){
-//                    return [
-//                        'id'    => $elem->id,
-//                        'title' => $elem->text
-//                    ];
-//                });
-//                return [
-//                    'id'    => $col->id,
-//                    'title' => $col->title,
-//                    'item'  => $items->toArray()
-//                ];
-//            });
-//            return [
-//                'retro_id'    => $retro->id,
-//                'cohort_name' => $retro->cohort ? $retro->cohort->name : '',
-//                'retro_title' => $retro->title,
-//                'boards'      => $boards->toArray()
-//            ];
-//        });
-//
-//        return response()->json($formattedRetros);
-//    }
+        $retros_id = $retros->id;
+        $retrosFirst = Retros::All()->first();
         $formattedRetros = [
-            'retro_id' => $retros->id,
-            'retro_name' => $retros->retro_name,
+            'retro_id' => $retrosFirst->id,
+            'retro_name' => $retrosFirst->retro_name,
             'columns' => $this->GetColumnsJson($retros_id)
         ];
 
@@ -101,5 +78,9 @@ class RetroController extends Controller
             ];
         }
         return $content_list;
+    }
+
+    public function AddColumnJson(){
+
     }
 }

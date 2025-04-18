@@ -10471,82 +10471,40 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
   \*********************************/
 /***/ (() => {
 
-/*var dataContent = [
-    {
-        "id": "column-id-1",
-        "title": "カラム (1)",
-        "item": [
-            {
-                "id": "item-id-1",
-                "title": "カード 1"
-            },
-            {
-                "id": "item-id-2",
-                "title": "カード 2"
-            }
-        ]
-    },
-    {
-        "id": "column-id-2",
-        "title": "カラム (2)",
-        "item": [
-            {
-                "id": "item-id-3",
-                "title": "カード 3"
-            }
-        ]
-    },
-    {
-        "id": "column-id-3",
-        "title": "カラム (3)",
-        "item": [
-            {
-                "id": "item-id-4",
-                "title": "カード 4"
-            },
-            {
-                "id": "item-id-5",
-                "title": "カード 5"
-            }
-        ]
-    }
-];*/
-
-var dataContent = [];
+/*
+    Assign js kanban to html element with id kanban-canvas
+*/
 var kanban = new jKanban({
   element: '#kanban-canvas',
-  // カンバンを表示する場所のID
-  boards: dataContent,
-  // カンバンに表示されるカラムやカードのデータ
+  boards: [],
   gutter: '16px',
-  // カンバンの余白
-  widthBoard: '250px',
-  // カラムの幅 (responsivePercentageの「true」設定により無視される)
-  responsivePercentage: true,
-  // trueを選択時はカラム幅は％で指定され、gutterとwidthBoardの設定は不要
   dragItems: true,
-  // trueを選択時はカードをドラッグ可能
-  dragBoards: true // カラムをドラッグ可能にするかどうか
+  dragBoards: true
 });
-var salope = {
-  "id": "item-id-6",
-  "title": "Saloperie 6"
-};
 document.getElementById("AddKanban").onclick = function () {
-  ColumnAdd("column_1", "Salope");
+  ColumnAdd("column_1", document.getElementById("NewColumn").value);
 };
 document.getElementById("RemoveKanban").onclick = function () {
   KanbanRemove();
 };
+
+/*
+    When showkanban page is loaded, search for database for corresponding retros, columns and content
+    Insert said data in kanban var
+*/
 document.addEventListener('DOMContentLoaded', function () {
   fetch(window.allajax).then(function (res) {
     return res.json();
   }).then(function (retrosData) {
-    console.log(retrosData.columns[1].id);
     retrosData.columns.forEach(function (item, index) {
-      ColumnAdd(retrosData.columns[index].id, retrosData.columns[index].title), retrosData.columns.forEach(function (itemContent, indexContent) {
-        return KanbanAdd(retrosData.columns[index].id, retrosData.columns[index].items[indexContent].id, retrosData.columns[index].items[indexContent].text);
+      ColumnAdd(retrosData.columns[index].id, retrosData.columns[index].title);
+      console.log(retrosData.columns[index]);
+      console.log(retrosData.columns[index].id);
+      retrosData.columns[index].items.forEach(function (itemContent, indexContent) {
+        console.log(indexContent);
+        KanbanAdd(retrosData.columns[index].id, retrosData.columns[index].items[indexContent].id, retrosData.columns[index].items[indexContent].text);
       });
+      KanbanAddForm(retrosData.columns[index].id, document.createElement("form"));
     });
   });
 });
@@ -10562,6 +10520,9 @@ function KanbanAdd(ColumnID, ContentID, Text) {
     "id": ContentID,
     "title": Text
   });
+}
+function KanbanAddForm(ColumnID, form) {
+  kanban.addForm(ColumnID, form);
 }
 function KanbanRemove() {
   kanban.removeElement('item-id-6');
