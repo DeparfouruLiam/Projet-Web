@@ -11,27 +11,25 @@
 
 
     <main>
-        <div>{{$retros->id}}</div>
 
         <div id="kanban-canvas">
 
         </div>
 
-            <form action="{{ route('retros.AddColumnJson',[$cohort,$retros]) }}" method="POST">
-                {{ csrf_field() }}
-                <input id="NewColumn" name="NewColumn" style="background-color: darkgrey; margin: 5px" placeholder="Nom de la colonne" type="text" required>
-                <button id="AddKanban" type="submit">Ajouter Colonne</button>
-            </form>
+            @can('create', App\Models\Retros::class)
+                <form action="{{ route('retros.AddColumnDB',[$cohort,$retros]) }}" method="POST">
+                    {{ csrf_field() }}
+                    <input id="NewColumn" name="NewColumn" style="background-color: darkgrey; margin: 5px" placeholder="Nom de la colonne" type="text" required>
+                    <button id="AddKanban" type="submit">Ajouter Colonne</button>
+                </form>
+            @endcan
 
-
-            <br>
 
 
     </main>
 
     <script>
-        window.allajax = "{{ route('retros.GetRetrosJson',[$cohort,$retros]) }}";
-        window.addajax = "{{ route('retros.AddColumnJson',[$cohort,$retros]) }}"</script>
+        window.allajax = "{{ route('retros.GetRetrosJson',[$cohort,$retros]) }}"</script>
 
 </x-app-layout>
 

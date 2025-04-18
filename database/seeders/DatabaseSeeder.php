@@ -255,28 +255,28 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Retros::create([
-            'retro_name'   => 'La rétro du cul',
+            'retro_name'   => 'La rétro du Laravel voila',
             'cohort_id' => 1,
         ]);
 
         RetrosColumns::create([
-            'title'   => 'LES CULS',
+            'title'   => 'Une colonne',
             'retro_id' => 1,
         ]);
 
         RetrosColumns::create([
-            'title'   => 'LES LOL',
+            'title'   => 'Deux',
             'retro_id' => 1,
         ]);
 
         RetrosContent::create([
-            'text'   => 'caca',
+            'text'   => 'C sharp',
             'user_id' => 1,
             'column_id' => 1,
         ]);
 
         RetrosContent::create([
-            'text'   => "Mettre caca dans ta bdd c'est très immature moi de mardi",
+            'text'   => "Allez tout marche non",
             'user_id' => 1,
             'column_id' => 1,
         ]);
@@ -309,7 +309,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         RetrosContent::create([
-            'text'   => "Caca",
+            'text'   => "Salut",
             'user_id' => 1,
             'column_id' => 4,
         ]);

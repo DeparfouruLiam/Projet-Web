@@ -10481,12 +10481,11 @@ var kanban = new jKanban({
   dragItems: true,
   dragBoards: true
 });
-document.getElementById("AddKanban").onclick = function () {
-  ColumnAdd("column_1", document.getElementById("NewColumn").value);
-};
-document.getElementById("RemoveKanban").onclick = function () {
-  KanbanRemove();
-};
+try {
+  document.getElementById("AddKanban").onclick = function () {
+    ColumnAdd("column_1", document.getElementById("NewColumn").value);
+  };
+} catch (_unused) {}
 
 /*
     When showkanban page is loaded, search for database for corresponding retros, columns and content
@@ -10504,10 +10503,12 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log(indexContent);
         KanbanAdd(retrosData.columns[index].id, retrosData.columns[index].items[indexContent].id, retrosData.columns[index].items[indexContent].text);
       });
-      KanbanAddForm(retrosData.columns[index].id, document.createElement("form"));
     });
   });
 });
+/*
+    Add a new column to the kanban with a given title ColumnTitle
+ */
 function ColumnAdd(ColumnID, ColumnTitle) {
   kanban.addBoards([{
     "id": ColumnID,
@@ -10515,22 +10516,15 @@ function ColumnAdd(ColumnID, ColumnTitle) {
     "item": []
   }]);
 }
-function ColumnAddDB(ColumnID, ColumnTitle) {
-  fetch(window.addajax).then(function (r) {
-    return ColumnAdd(ColumnID, ColumnTitle);
-  });
-}
+
+/*
+    Add a new element to the ColumnID column with a given text
+ */
 function KanbanAdd(ColumnID, ContentID, Text) {
   kanban.addElement(ColumnID, {
     "id": ContentID,
     "title": Text
   });
-}
-function KanbanAddForm(ColumnID, form) {
-  kanban.addForm(ColumnID, form);
-}
-function KanbanRemove() {
-  kanban.removeElement('item-id-6');
 }
 
 /***/ }),

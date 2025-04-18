@@ -47,7 +47,11 @@ class GroupController extends Controller
         ]);
     }
 
-    //Fonction pour générer de groupes selon le nombre de personnes par groupe demandées
+    /*
+        Deletes old group from given cohort
+        Ask Gemini AI to make random groups using students' grades in json with students from given cohort
+        Put groups in Groups database to display it in groups.index
+    */
     public function generate(Request $request,Cohort $cohort) {
         UserGroups::where('cohort_id',$cohort->id)->delete();
         Groups::where('cohort_id',$cohort->id)->delete();
