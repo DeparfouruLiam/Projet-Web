@@ -10439,8 +10439,7 @@ process.umask = function() { return 0; };
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _bootstrap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
-/* harmony import */ var _scripts__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./scripts */ "./resources/js/scripts.js");
-/* harmony import */ var _scripts__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_scripts__WEBPACK_IMPORTED_MODULE_1__);
+Object(function webpackMissingModule() { var e = new Error("Cannot find module './scripts'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
 /* harmony import */ var alpinejs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/module.esm.js");
 
 
@@ -10462,70 +10461,6 @@ __webpack_require__.r(__webpack_exports__);
 
 window.axios = axios__WEBPACK_IMPORTED_MODULE_0__["default"];
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-
-/***/ }),
-
-/***/ "./resources/js/scripts.js":
-/*!*********************************!*\
-  !*** ./resources/js/scripts.js ***!
-  \*********************************/
-/***/ (() => {
-
-/*
-    Assign js kanban to html element with id kanban-canvas
-*/
-var kanban = new jKanban({
-  element: '#kanban-canvas',
-  boards: [],
-  gutter: '16px',
-  dragItems: true,
-  dragBoards: true
-});
-try {
-  document.getElementById("AddKanban").onclick = function () {
-    ColumnAdd("column_1", document.getElementById("NewColumn").value);
-  };
-} catch (_unused) {}
-
-/*
-    When showkanban page is loaded, search for database for corresponding retros, columns and content
-    Insert said data in kanban var
-*/
-document.addEventListener('DOMContentLoaded', function () {
-  fetch(window.allajax).then(function (res) {
-    return res.json();
-  }).then(function (retrosData) {
-    retrosData.columns.forEach(function (item, index) {
-      ColumnAdd(retrosData.columns[index].id, retrosData.columns[index].title);
-      console.log(retrosData.columns[index]);
-      console.log(retrosData.columns[index].id);
-      retrosData.columns[index].items.forEach(function (itemContent, indexContent) {
-        console.log(indexContent);
-        KanbanAdd(retrosData.columns[index].id, retrosData.columns[index].items[indexContent].id, retrosData.columns[index].items[indexContent].text);
-      });
-    });
-  });
-});
-/*
-    Add a new column to the kanban with a given title ColumnTitle
- */
-function ColumnAdd(ColumnID, ColumnTitle) {
-  kanban.addBoards([{
-    "id": ColumnID,
-    "title": ColumnTitle,
-    "item": []
-  }]);
-}
-
-/*
-    Add a new element to the ColumnID column with a given text
- */
-function KanbanAdd(ColumnID, ContentID, Text) {
-  kanban.addElement(ColumnID, {
-    "id": ContentID,
-    "title": Text
-  });
-}
 
 /***/ }),
 
@@ -10601,18 +10536,6 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 				}
 /******/ 			}
 /******/ 			return result;
-/******/ 		};
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/compat get default export */
-/******/ 	(() => {
-/******/ 		// getDefaultExport function for compatibility with non-harmony modules
-/******/ 		__webpack_require__.n = (module) => {
-/******/ 			var getter = module && module.__esModule ?
-/******/ 				() => (module['default']) :
-/******/ 				() => (module);
-/******/ 			__webpack_require__.d(getter, { a: getter });
-/******/ 			return getter;
 /******/ 		};
 /******/ 	})();
 /******/ 	
